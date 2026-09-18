@@ -14,4 +14,5 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy -- -D warnings
       - run: cargo test
-      - run: cargo install worker-build && worker-build --release
+      - run: cargo install worker-build --version 0.8.6 --locked
+      - run: worker-build --release
