@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy --env production",
+    "deploy:staging": "wrangler deploy --env staging",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "4.135.0"
+  }
+}

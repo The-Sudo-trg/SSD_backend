@@ -3,7 +3,7 @@ main = "build/worker/shim.mjs"
 compatibility_date = "2026-09-01"
 
 [build]
-command = "worker-build --release"
+command = "cargo install worker-build --version 0.8.6 --locked && worker-build --release"
 
 [[kv_namespaces]]
 binding = "CACHE_KV"
@@ -26,7 +26,56 @@ FRONTEND_ORIGIN = "http://localhost:3000"
 SUPABASE_URL = "https://YOUR_PROJECT.supabase.co"
 
 [env.staging]
-vars = { ENVIRONMENT = "staging", FRONTEND_ORIGIN = "https://staging.ssddelhi.org" }
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+FRONTEND_ORIGIN = "https://staging.ssddelhi.org"
+SUPABASE_URL = "https://YOUR_STAGING_PROJECT.supabase.co"
+
+[[env.staging.kv_namespaces]]
+binding = "CACHE_KV"
+id = "REPLACE_WITH_STAGING_KV_ID"
+
+[[env.staging.r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "ssd-delhi-media-staging"
+
+[[env.staging.queues.producers]]
+binding = "EMAIL_QUEUE"
+queue = "ssd-delhi-email-staging"
+
+[[env.staging.queues.consumers]]
+queue = "ssd-delhi-email-staging"
 
 [env.production]
-vars = { ENVIRONMENT = "production", FRONTEND_ORIGIN = "https://ssddelhi.org" }
+
+[env.production.vars]
+ENVIRONMENT = "production"
+FRONTEND_ORIGIN = "https://ssddelhi.org"
+SUPABASE_URL = "https://YOUR_PRODUCTION_PROJECT.supabase.co"
+
+[[env.production.kv_namespaces]]
+binding = "CACHE_KV"
+id = "REPLACE_WITH_PRODUCTION_KV_ID"
+
+[[env.production.r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "ssd-delhi-media"
+
+[[env.production.queues.producers]]
+binding = "EMAIL_QUEUE"
+queue = "ssd-delhi-email"
+
+[[env.production.queues.consumers]]
+queue = "ssd-delhi-email"
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+persist = true
+head_sampling_rate = 1
+
+[observability.traces]
+enabled = false
+persist = true
+head_sampling_rate = 1

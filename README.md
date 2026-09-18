@@ -20,7 +20,21 @@ CLI. Set `SUPABASE_SERVICE_ROLE_KEY`, `JWT_SECRET`, `TURNSTILE_SECRET`, and
 and must never be exposed to the browser. Rotate any credentials that were pasted into
 chat or terminal history before using this project.
 
+For Cloudflare Workers Builds, use the explicit environment deploy command:
+
+```sh
+npm install
+npm run deploy:staging
+npm run deploy
+```
+
+`wrangler.toml` installs the pinned `worker-build` version before compiling, so the
+Cloudflare build environment does not need a preinstalled Rust binary. Before deploying,
+replace the staging/production placeholders for `SUPABASE_URL` and `CACHE_KV` with the
+values for the corresponding Cloudflare and Supabase projects. Create the staging R2
+bucket and email queue named in the staging environment, or change those names to your
+existing resources.
+
 The initial integration exposes real Supabase/KV health checks, cached public settings,
 and cached published post reads. Protected mutations must add custom authentication,
 Turnstile verification, validation, rate limiting, and audit logging before being enabled.
-
