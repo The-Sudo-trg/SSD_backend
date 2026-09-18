@@ -24,7 +24,3 @@ The initial integration exposes real Supabase/KV health checks, cached public se
 and cached published post reads. Protected mutations must add custom authentication,
 Turnstile verification, validation, rate limiting, and audit logging before being enabled.
 
-# SSD_backend
-# SSD_backend
-# SSD_backend
-# SSD_backend
