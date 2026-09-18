@@ -1,0 +1,32 @@
+name = "ssd-delhi-backend"
+main = "build/worker/shim.mjs"
+compatibility_date = "2026-09-01"
+
+[build]
+command = "worker-build --release"
+
+[[kv_namespaces]]
+binding = "CACHE_KV"
+id = "REPLACE_ME"
+
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "ssd-delhi-media"
+
+[[queues.producers]]
+binding = "EMAIL_QUEUE"
+queue = "ssd-delhi-email"
+
+[[queues.consumers]]
+queue = "ssd-delhi-email"
+
+[vars]
+ENVIRONMENT = "development"
+FRONTEND_ORIGIN = "http://localhost:3000"
+SUPABASE_URL = "https://YOUR_PROJECT.supabase.co"
+
+[env.staging]
+vars = { ENVIRONMENT = "staging", FRONTEND_ORIGIN = "https://staging.ssddelhi.org" }
+
+[env.production]
+vars = { ENVIRONMENT = "production", FRONTEND_ORIGIN = "https://ssddelhi.org" }
