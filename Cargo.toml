@@ -1,0 +1,22 @@
+[package]
+name = "ssd-delhi-backend"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+worker = { version = "0.7.4", features = ["queue"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+uuid = { version = "1", features = ["v4", "js"] }
+
+[dev-dependencies]
+serde_json = "1"
+
+[profile.release]
+lto = true
+opt-level = "s"
+codegen-units = 1
