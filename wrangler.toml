@@ -34,7 +34,7 @@ SUPABASE_URL = "https://YOUR_STAGING_PROJECT.supabase.co"
 
 [[env.staging.kv_namespaces]]
 binding = "CACHE_KV"
-id = "REPLACE_WITH_STAGING_KV_ID"
+id = "89d26a9eda804074a41f5fbce1fec73b"
 
 [[env.staging.r2_buckets]]
 binding = "MEDIA_BUCKET"
@@ -56,7 +56,7 @@ SUPABASE_URL = "https://YOUR_PRODUCTION_PROJECT.supabase.co"
 
 [[env.production.kv_namespaces]]
 binding = "CACHE_KV"
-id = "REPLACE_WITH_PRODUCTION_KV_ID"
+id = "fc94f071eca042dd95a39974eddda58d"
 
 [[env.production.r2_buckets]]
 binding = "MEDIA_BUCKET"
